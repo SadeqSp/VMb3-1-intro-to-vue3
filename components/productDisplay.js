@@ -52,7 +52,15 @@ app.component('product-display', {
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            //this.$emit('add-to-cart') // for the 1st part of this lesson (when cart is 0 and will increase 1 by 1)
+                                        // when 'addToCart'/method(inside component) happens => "add-to-cart"/event is called (in compoenent's parent[app])
+                                        // we must add 'add-to-cart'/event to '<compoenent>' (in index)
+                                        // and define a new method for it 'updateCart' (in component's parent[app]) to change the 'cart'/data in it
+
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].id)   
+                                        // for the 2nd part of this lesson (when cart is an array and get and hold the 'id' of clicked product)
+                                        // sending 'id' to 'updateCart'/method outside of component  
+                                        // to see the number in 'cart' instead of added IDs        
         },
         updateVariant(index) {
             this.selectedVariant = index
